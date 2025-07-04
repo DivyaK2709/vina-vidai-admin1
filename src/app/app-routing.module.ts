@@ -25,7 +25,10 @@ const routes: Routes = [
     path: 'signin',
     loadComponent: () => import('./signin/signin.page').then(m => m.SigninPage),
   },
-  // your other routes
+  {
+    path: 'tabs',
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+  },
 ];
 
 
