@@ -1,0 +1,39 @@
+<ion-header translucent>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    
+    <ion-title>Profile</ion-title>
+    
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="settings-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="profile-container ion-text-center">
+    <ion-avatar class="profile-avatar">
+      <img [src]="user.profileImage || 'assets/user.png'" alt="Profile Image">
+    </ion-avatar>
+    <h2>{{ user.name }}</h2>
+    <p>{{ user.email }}</p>
+
+    <div class="test-history">
+      <h5>History of Test Progress</h5>
+      <ion-list lines="none">
+        <ion-item *ngFor="let test of testHistory">
+          <ion-label>
+            <h6>{{ test.testName }}</h6>
+            <p>Score: {{ test.score }}%</p>
+            <p>Date: {{ test.date }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>
+

@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { FirebaseService } from '../services/firebaseauth.service';
+import { Firestore, doc, updateDoc } from '@angular/fire/firestore'; // import Firestore
+
 @Component({
   selector: 'app-signin',
   standalone: true,
@@ -14,16 +16,27 @@ import { FirebaseService } from '../services/firebaseauth.service';
 export class SigninPage {
   emailOrUsername: string = '';
   password: string = '';
+  fullName: string = '';
 
-  constructor(private firebaseService: FirebaseService, private router: Router) {}
+  constructor(
+    private firebaseService: FirebaseService,
+    private router: Router,
+    private firestore: Firestore // inject Firestore
+  ) {}
 
   async onSignIn() {
     try {
-      await this.firebaseService.signInWithUsernameOrEmail(this.emailOrUsername, this.password, 'admins');
+      const userCredential = await this.firebaseService.signInWithUsernameOrEmail(this.emailOrUsername, this.password, 'admins');
+      console.log("Signin successful", this.emailOrUsername, this.password, this.fullName);
 
+      const uid = userCredential.user.uid;
 
-      alert('✅ Admin sign in successful!');
-      this.router.navigate(['/home']); // Navigate to admin dashboard
+    
+      const adminDocRef = doc(this.firestore, 'admins', uid);
+      await updateDoc(adminDocRef, { fullName: this.fullName });
+      console.log("uid",uid);
+     console.log('✅ Admin sign in successful!');
+      this.router.navigate(['/tabs']);
     } catch (error: any) {
       console.error('Admin signin error:', error);
       console.log(`❌ Admin sign in failed: ${error.message}`);

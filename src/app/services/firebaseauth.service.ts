@@ -17,6 +17,7 @@ import {
   getDocs
 } from '@angular/fire/firestore';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -68,4 +69,7 @@ export class FirebaseService {
     snapshot.forEach(doc => admins.push({ id: doc.id, ...doc.data() }));
     return admins;
   }
+  
 }
+
+

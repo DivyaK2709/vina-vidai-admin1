@@ -1,0 +1,31 @@
+.profile-container {
+  padding: 20px;
+  background: linear-gradient(to bottom, #0b4b7f, #1b7bb8);
+  color: white;
+  align-items: center; 
+  justify-content: center;
+}
+
+.profile-avatar {
+  margin: 20px auto;
+  width: 100px;
+  height: 100px;
+}
+
+.test-history {
+  background: white;
+  color: black;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.test-history h5 {
+  margin: 10px;
+}
+ion-title {
+  text-align: center;
+  width: 100%;
+}
+
+

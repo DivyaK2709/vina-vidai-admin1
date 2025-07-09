@@ -1,0 +1,54 @@
+ion-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+
+h2 {
+  margin-top: 10px;
+  color: black;
+}
+
+p {
+  color: black;
+}
+.logout-button-container {
+ 
+  position: relative;
+  z-index: 200;
+  
+
+}
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-avatar-container {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-avatar img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+.edit-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  --padding-start: 0;
+  --padding-end: 0;
+  width: 32px;
+  height: 32px;
+  min-width: 0;
+  --border-radius: 50%;
+  --background: #0a7cff;
+  color: white;
+}
+
