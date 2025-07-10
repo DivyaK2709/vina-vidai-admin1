@@ -38,27 +38,30 @@ export class SettingsPage implements OnInit {
   triggerFileInput() {
     this.fileInput.nativeElement.click();
   }
+async uploadPhoto(event: any) {
+  const file = event.target.files[0];
+  if (!file) return;
 
-  async uploadPhoto(event: any) {
-    const file = event.target.files[0];
-    if (!file) return;
+  const currentUser = this.auth.currentUser;
+  if (!currentUser) return;
 
-    const currentUser = this.auth.currentUser;
-    if (!currentUser) return;
+  try {
+    const url = await this.apiService.uploadProfileImage(file, currentUser.uid);
 
-    try {
-      const url = await this.apiService.uploadProfileImage(file, currentUser.uid);
-      
-      // Update Firestore user photoURL field
-      const docRef = doc(this.firestore, 'admins', currentUser.uid);
-      await updateDoc(docRef, { photoURL: url });
-      this.user.photoURL = url;
-      alert('✅ Profile photo updated successfully!');
-    } catch (error) {
-      console.error('Error uploading photo:', error);
-      alert('❌ Failed to upload photo');
-    }
+    // ✅ Update Firestore with new photoURL
+    const docRef = doc(this.firestore, 'admins', currentUser.uid);
+    await updateDoc(docRef, { photoURL: url });
+
+    // ✅ Update local user object so UI refreshes immediately
+    this.user.photoURL = url;
+
+    alert('✅ Profile photo updated successfully!');
+  } catch (error) {
+    console.error('Error uploading photo:', error);
+    alert('❌ Failed to upload photo');
   }
+}
+
 
   goTologout() {
    

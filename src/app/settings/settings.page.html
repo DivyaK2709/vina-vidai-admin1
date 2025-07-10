@@ -11,7 +11,7 @@
       <ion-avatar class="profile-avatar">
         <img [src]="user?.photoURL || 'https://ionicframework.com/docs/img/demos/avatar.svg'" alt="Profile Image">
       </ion-avatar>
-
+      
       
       <ion-button class="edit-button" fill="clear" (click)="triggerFileInput()">
         <ion-icon name="create-outline"></ion-icon>
@@ -20,16 +20,21 @@
 
 
     <input type="file" accept="image/*" #fileInput hidden (change)="uploadPhoto($event)">
+
+   
 </div>
-    <h2>{{ user?.fullName }}</h2>
+<div>
+   <h2>{{ user?.fullName }}</h2>
     <p>{{ user?.email }}</p>
+</div>
+    
 
 </ion-content>
 
 
 <ion-footer>
   <ion-toolbar>
-    <ion-button expand="block" color="danger" routerLink="/signin">
+    <ion-button expand="block" color="danger" (click)="goTologout()">
       Logout
     </ion-button>
   </ion-toolbar>
