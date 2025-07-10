@@ -43,6 +43,7 @@ async uploadPhoto(event: any) {
   if (!file) return;
 
   const currentUser = this.auth.currentUser;
+ console.log("currentUser",currentUser);
   if (!currentUser) return;
 
   try {
