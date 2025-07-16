@@ -2,23 +2,30 @@ import { Injectable } from '@angular/core';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiService {
 
-  private storage = getStorage(); // Correct Firebase Storage instance
-
-  constructor() {}
-
   async uploadProfileImage(file: File, uid: string): Promise<string> {
-    // ✅ Correct path — do NOT put http:// or https://
-    const storageRef = ref(this.storage, `profile_images/${uid}/${file.name}`);
+    const storage = getStorage();
+    const storageRef = ref(storage, `profileImages/${uid}/${file.name}`);
 
-    // ✅ Upload the file
-    await uploadBytes(storageRef, file);
+    try {
+      // ✅ Read file as ArrayBuffer if you want explicit binary data upload
+      const arrayBuffer = await file.arrayBuffer();
+      const uint8Array = new Uint8Array(arrayBuffer);
 
-    // ✅ Get the download URL
-    const url = await getDownloadURL(storageRef);
-    return url; // Return the photo URL to save in Firestore
+      // ✅ Upload as binary bytes
+      await uploadBytes(storageRef, uint8Array);
+
+      // ✅ Get and return the download URL
+      const url = await getDownloadURL(storageRef);
+      console.log('Uploaded file URL:', url);
+      return url;
+
+    } catch (error) {
+      console.error('Error uploading file:', error);
+      throw error;
+    }
   }
 }

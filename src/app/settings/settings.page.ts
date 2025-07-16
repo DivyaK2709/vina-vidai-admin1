@@ -43,17 +43,18 @@ async uploadPhoto(event: any) {
   if (!file) return;
 
   const currentUser = this.auth.currentUser;
- console.log("currentUser",currentUser);
+  console.log("Current user:", currentUser);
   if (!currentUser) return;
 
   try {
+    console.log("Uploading file to storage...");
     const url = await this.apiService.uploadProfileImage(file, currentUser.uid);
+    console.log("Download URL received:", url);
 
-    // ✅ Update Firestore with new photoURL
     const docRef = doc(this.firestore, 'admins', currentUser.uid);
     await updateDoc(docRef, { photoURL: url });
+    console.log("Firestore updated with new photoURL.");
 
-    // ✅ Update local user object so UI refreshes immediately
     this.user.photoURL = url;
 
     alert('✅ Profile photo updated successfully!');
@@ -62,6 +63,7 @@ async uploadPhoto(event: any) {
     alert('❌ Failed to upload photo');
   }
 }
+
 
 
   goTologout() {

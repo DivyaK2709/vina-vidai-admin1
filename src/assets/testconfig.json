@@ -1,0 +1,81 @@
+{
+  "questions": [
+    {
+      "question": "What is the capital of India?",
+      "options": ["Delhi", "Mumbai", "Kolkata", "Chennai"],
+      "correct": "Delhi"
+    },
+    {
+      "question": "Which planet is known as the Red Planet?",
+      "options": ["Earth", "Venus", "Mars", "Jupiter"],
+      "correct": "Mars"
+    },
+    {
+      "question": "Who wrote the national anthem of India?",
+      "options": ["Rabindranath Tagore", "Bankim Chandra Chatterjee", "Mahatma Gandhi", "Jawaharlal Nehru"],
+      "correct": "Rabindranath Tagore"
+    },
+    {
+      "question": "Which is the largest ocean in the world?",
+      "options": ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
+      "correct": "Pacific Ocean"
+    },
+    {
+      "question": "Which gas is most abundant in the Earth's atmosphere?",
+      "options": ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"],
+      "correct": "Nitrogen"
+    },
+    {
+      "question": "Who is known as the father of computers?",
+      "options": ["Charles Babbage", "Alan Turing", "Bill Gates", "Steve Jobs"],
+      "correct": "Charles Babbage"
+    },
+    {
+      "question": "Which country is called the Land of Rising Sun?",
+      "options": ["China", "South Korea", "Japan", "Thailand"],
+      "correct": "Japan"
+    },
+    {
+      "question": "What is H2O commonly known as?",
+      "options": ["Salt", "Water", "Oxygen", "Hydrogen"],
+      "correct": "Water"
+    },
+    {
+      "question": "Who invented the telephone?",
+      "options": ["Alexander Graham Bell", "Thomas Edison", "Nikola Tesla", "Isaac Newton"],
+      "correct": "Alexander Graham Bell"
+    },
+    {
+      "question": "Which is the largest continent by area?",
+      "options": ["Africa", "North America", "Asia", "Europe"],
+      "correct": "Asia"
+    },
+    {
+      "question": "What is the chemical symbol for gold?",
+      "options": ["Au", "Ag", "Gd", "Go"],
+      "correct": "Au"
+    },
+    {
+      "question": "Who painted the Mona Lisa?",
+      "options": ["Leonardo da Vinci", "Pablo Picasso", "Vincent van Gogh", "Michelangelo"],
+      "correct": "Leonardo da Vinci"
+    },
+    {
+      "question": "Which is the smallest prime number?",
+      "options": ["0", "1", "2", "3"],
+      "correct": "2"
+    },
+    {
+      "question": "Which organ purifies blood in the human body?",
+      "options": ["Heart", "Lungs", "Liver", "Kidney"],
+      "correct": "Kidney"
+    },
+    {
+      "question": "Which festival is known as the festival of lights?",
+      "options": ["Holi", "Diwali", "Eid", "Christmas"],
+      "correct": "Diwali"
+    }
+  ]
+}
+
+

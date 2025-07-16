@@ -1,13 +1,51 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>test</ion-title>
+<ion-header>
+  <ion-toolbar color="transparent">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4" class="ion-text-left">
+          <ion-icon name="arrow-back-outline" size="large"></ion-icon>
+        </ion-col>
+        <ion-col size="4" class="ion-text-center">
+          <ion-title>Question {{ currentIndex + 1 }}/{{ questions.length }}</ion-title>
+        </ion-col>
+        <ion-col size="4" class="ion-text-right">
+          <ion-icon name="volume-high-outline" size="large"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-toolbar>
 </ion-header>
+<ion-content class="quiz-content">
+  <div *ngIf="questions.length > 0">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">test</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <div class="question-container">
+      <h2>{{ questions[currentIndex].question }}</h2>
+    </div>
+
+    <div class="timer-container">
+      <div class="timer-bar" [ngStyle]="{ 'width.%': (timer / 15) * 100 }"></div>
+      <p>{{ timer }}s left</p>
+    </div>
+
+    <div class="options-container">
+      <ion-list>
+        <ion-item *ngFor="let option of questions[currentIndex].options">
+          <ion-label [ngStyle]="{
+            'color': showAnswer && option === correctAnswer ? 'green' :
+                      (selectedOption === option ? 'blue' : 'black')
+          }">
+            {{ option }}
+          </ion-label>
+          <ion-radio slot="start" [value]="option" [disabled]="showAnswer"
+            (ionSelect)="selectOption(option)">
+          </ion-radio>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <div *ngIf="showAnswer">
+      <p><strong>Correct Answer:</strong> {{ correctAnswer }}</p>
+    </div>
+
+  </div>
 </ion-content>
