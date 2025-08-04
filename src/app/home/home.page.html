@@ -1,20 +1,57 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="ion-padding">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <h2 class="category-title ion-text-center">{{ 'TOP_CATEGORIES' | translate }}</h2>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-grid>
+    <ion-row>
+      <!-- Existing subjects from JSON -->
+      <ion-col size="6" *ngFor="let subject of subjects">
+        <ion-card class="subject-card" (click)="openUploadPage(subject.name)">
+          <ion-card-content>
+            <img [src]="subject.icon" alt="{{subject.name}} Icon" class="subject-icon">
+            <p class="subject-name">{{ subject.name | translate }}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <!-- 🔵 Four extra static cards added below -->
+      <ion-col size="6">
+        <ion-card class="subject-card" (click)="openUploadPage('Economics')">
+          <ion-card-content>
+            <img src="assets/icon/economic-growth.png" alt="Economics Icon" class="subject-icon">
+            <p class="subject-name">{{ 'ECONOMICS' | translate }}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-card class="subject-card" (click)="openUploadPage('Social Science')">
+          <ion-card-content>
+            <img src="assets/icon/development.png" alt="Social Science Icon" class="subject-icon">
+            <p class="subject-name">{{ 'SOCIAL_SCIENCE' | translate }}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-card class="subject-card" (click)="openUploadPage('Geography')">
+          <ion-card-content>
+            <img src="assets/icon/globe.png" alt="Geography Icon" class="subject-icon">
+            <p class="subject-name">{{ 'GEOGRAPHY' | translate }}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-card class="subject-card" (click)="openUploadPage('History')">
+          <ion-card-content>
+            <img src="assets/icon/history.png" alt="History Icon" class="subject-icon">
+            <p class="subject-name">{{ 'HISTORY' | translate }}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
 </ion-content>

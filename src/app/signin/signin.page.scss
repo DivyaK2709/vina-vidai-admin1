@@ -27,3 +27,21 @@
   text-align: center;
   margin-top: 20px;
 }
+.language-dropdown-container {
+  position: relative;
+}
+
+.language-menu {
+  position: fixed; /* ✅ fixed ensures overlay above content */
+  top: 56px; /* Adjust based on your header height */
+  right: 10px; /* Slight padding from edge */
+  width: 160px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  z-index: 9999; /* ✅ ensures visible above everything */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+
+

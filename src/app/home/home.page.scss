@@ -1,27 +1,26 @@
-#container {
+.category-title {
+  text-align: center; /* Center align title */
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.subject-card {
+  border-radius: 15px;
+  background: linear-gradient(to bottom, white, #f0f8ff); // light blue overlay
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
   text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.subject-icon {
+  width: 50px;
+  height: 50px;
+  margin: 10px auto;
+  display: block;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
+.subject-name {
+  font-weight: 500;
+  margin-top: 5px;
+  color: #333;
 }

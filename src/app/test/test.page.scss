@@ -1,5 +1,5 @@
 .quiz-content {
-  --background: linear-gradient(to bottom, #ffd699, #ff9933);
+  --background: linear-gradient(to bottom, hsl(239, 100%, 80%),#1b7bb8);
   color: #333;
   padding: 20px;
 }
@@ -21,7 +21,7 @@
 
   .timer-bar {
     height: 8px;
-    background: linear-gradient(to right, #ffcc66, #ff6600);
+    background: linear-gradient(to right, #6966ff, #1b7bb8);
     border-radius: 4px;
     transition: width 1s linear;
     margin-bottom: 5px;

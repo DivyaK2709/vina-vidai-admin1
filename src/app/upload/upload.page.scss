@@ -1,0 +1,44 @@
+ion-toolbar {
+  --background: #1b7bb8;
+  --color: white;
+}
+
+ion-segment {
+  --background: #e0f0fa; /* light variant background if needed */
+  --indicator-color: #1b7bb8;
+}
+
+ion-segment-button {
+  display: flex;
+  flex-direction: column; /* stack icon above label */
+  justify-content: center;
+  align-items: center;
+}
+ ion-icon {
+    font-size: 24px; /* adjust icon size if needed */
+    margin-bottom: 4px;
+  }
+
+  ion-label {
+    font-size: 12px; /* adjust label size if needed */
+  }
+
+.green-input {
+  --color: green;
+}
+.question-item {
+  --background: #e3f2fd; // light blue background for question
+  --color: #0d47a1; // dark blue text
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.option-item {
+  --background: #fff3e0; // light orange background for options
+  --color: #e65100; // deep orange text
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+
+

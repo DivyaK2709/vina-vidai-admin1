@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'signin',
     loadComponent: () => import('./signin/signin.page').then(m => m.SigninPage),
   },
+   {
+    path: 'upload',
+    loadComponent: () => import('./upload/upload.page').then( m => m.UploadPage)
+  },
   {
     path: 'tabs',
     loadComponent: () => import('./tabs/tabs.page').then(m => m.TabsPage),
@@ -53,7 +57,8 @@ const routes: Routes = [
   {
     path: '**',
     redirectTo: 'login'
-  }
+  },
+ 
 ];
 
 @NgModule({

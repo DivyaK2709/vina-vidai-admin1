@@ -1,11 +1,35 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>{{ 'SIGN_IN' | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleLanguageMenu()" color="light">
+        {{ 'LANGUAGE' | translate }}
+        <ion-icon name="chevron-down-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<!-- ✅ Language dropdown -->
+<div *ngIf="showLanguageMenu" class="language-menu">
+  <ion-list>
+    <ion-item button (click)="selectLanguage('en')">
+      <ion-label>{{ 'ENGLISH' | translate }}</ion-label>
+    </ion-item>
+    <ion-item button (click)="selectLanguage('ta')">
+      <ion-label>{{ 'TAMIL' | translate }}</ion-label>
+    </ion-item>
+  </ion-list>
+</div>
+
 <ion-content class="ion-padding">
   <div class="signin-container">
     <div class="signin-card">
-      <h2 class="title">Sign In</h2>
+      <h2 class="title">{{ 'SIGN_IN' | translate }}</h2>
 
       <form #signInForm="ngForm" (ngSubmit)="onSignIn()">
         <ion-item>
-          <ion-label position="floating">Full Name</ion-label>
+          <ion-label position="floating">{{ 'USERNAME' | translate }}</ion-label>
           <ion-input
             type="text"
             [(ngModel)]="fullName"
@@ -17,13 +41,13 @@
           </ion-input>
         </ion-item>
         <ion-text color="danger" *ngIf="fullNameInput.invalid && (fullNameInput.dirty || fullNameInput.touched)">
-          <p *ngIf="fullNameInput.errors?.['required']">Full Name is required.</p>
+          <p *ngIf="fullNameInput.errors?.['required']">{{ 'USERNAME' | translate }} is required.</p>
           <p *ngIf="fullNameInput.errors?.['minlength']">Minimum 3 characters required.</p>
           <p *ngIf="fullNameInput.errors?.['maxlength']">Maximum 15 characters allowed.</p>
         </ion-text>
 
         <ion-item>
-          <ion-label position="floating">Email or Username</ion-label>
+          <ion-label position="floating">{{ 'EMAIL' | translate }}</ion-label>
           <ion-input
             type="text"
             [(ngModel)]="emailOrUsername"
@@ -33,11 +57,11 @@
           </ion-input>
         </ion-item>
         <ion-text color="danger" *ngIf="emailOrUsernameInput.invalid && (emailOrUsernameInput.dirty || emailOrUsernameInput.touched)">
-          <p *ngIf="emailOrUsernameInput.errors?.['required']">Email or Username is required.</p>
+          <p *ngIf="emailOrUsernameInput.errors?.['required']">{{ 'EMAIL' | translate }} is required.</p>
         </ion-text>
 
         <ion-item>
-          <ion-label position="floating">Password</ion-label>
+          <ion-label position="floating">{{ 'PASSWORD' | translate }}</ion-label>
           <ion-input
             type="password"
             [(ngModel)]="password"
@@ -47,19 +71,19 @@
           </ion-input>
         </ion-item>
         <ion-text color="danger" *ngIf="passwordInput.invalid && (passwordInput.dirty || passwordInput.touched)">
-          <p *ngIf="passwordInput.errors?.['required']">Password is required.</p>
+          <p *ngIf="passwordInput.errors?.['required']">{{ 'PASSWORD' | translate }} is required.</p>
         </ion-text>
 
         <ion-button expand="block" type="submit" class="signin-button" [disabled]="signInForm.invalid">
-          Sign In
+          {{ 'SIGN_IN' | translate }}
         </ion-button>
       </form>
 
       <div class="signup-link">
-        <ion-text>Don’t have an account?</ion-text>
+        <ion-text>{{ 'DONT_HAVE_ACCOUNT' | translate }}</ion-text>
         <br />
         <ion-button fill="clear" color="primary" (click)="goToSignup()">
-          Create an account
+          {{ 'CREATE_ACCOUNT' | translate }}
         </ion-button>
       </div>
     </div>
