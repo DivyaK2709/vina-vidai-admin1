@@ -1,47 +1,88 @@
-.signin-container {
+.signin-bg {
+  --background: linear-gradient(180deg, #6a11cb, #2575fc);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.lang-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.language-menu {
+  position: absolute;
+  top: 50px;
+  right: 15px;
+  width: 160px;
+  background: #fff;
+  color: #333;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 9999;
+}
+
+.signin-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
+  width: 100%;
 }
 
 .signin-card {
-  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 30px;
+  width: 90%;
   max-width: 400px;
-  background: #1e1e1e;
-  padding: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.signin-card h2 {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  margin-bottom: 25px;
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+
+ion-item {
+  --background: rgba(255,255,255,0.2);
   border-radius: 12px;
+  margin: 10px 0;
+  color: #fff;
 }
 
-.title {
-  text-align: center;
-  margin-bottom: 20px;
+ion-input::placeholder {
+  color: #e0e0e0;
+}
+
+.login-btn {
+  margin-top: 25px;
+  background: linear-gradient(to right, #00c6ff, #0072ff);
+  border-radius: 12px;
   color: white;
+  font-weight: 600;
 }
 
-.signin-button {
+.footer-links {
   margin-top: 20px;
-}
-
-.signup-link {
   text-align: center;
-  margin-top: 20px;
-}
-.language-dropdown-container {
-  position: relative;
+  color: #fff;
 }
 
-.language-menu {
-  position: fixed; /* ✅ fixed ensures overlay above content */
-  top: 56px; /* Adjust based on your header height */
-  right: 10px; /* Slight padding from edge */
-  width: 160px;
-  background: white;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  z-index: 9999; /* ✅ ensures visible above everything */
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+.footer-links ion-button {
+  color: #00c6ff;
+  font-weight: 500;
 }
-
-
-

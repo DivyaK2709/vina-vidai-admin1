@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ToastController } from '@ionic/angular';
 import { Auth, signOut } from '@angular/fire/auth';
 import { Firestore, doc, getDoc, updateDoc } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { ApiService } from '../services/api.service'; // adjust path
+import { ApiService } from '../services/api.service'; // adjust path if needed
 
 @Component({
   selector: 'app-settings',
@@ -21,7 +21,8 @@ export class SettingsPage implements OnInit {
     private auth: Auth,
     private firestore: Firestore,
     private router: Router,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private toastController: ToastController
   ) {}
 
   async ngOnInit() {
@@ -38,37 +39,47 @@ export class SettingsPage implements OnInit {
   triggerFileInput() {
     this.fileInput.nativeElement.click();
   }
-async uploadPhoto(event: any) {
-  const file = event.target.files[0];
-  if (!file) return;
 
-  const currentUser = this.auth.currentUser;
-  console.log("Current user:", currentUser);
-  if (!currentUser) return;
+  async uploadPhoto(event: any) {
+    const file = event.target.files[0];
+    if (!file) return;
 
-  try {
-    console.log("Uploading file to storage...");
-    const url = await this.apiService.uploadProfileImage(file, currentUser.uid);
-    console.log("Download URL received:", url);
+    const currentUser = this.auth.currentUser;
+    if (!currentUser) {
+      await this.presentToast('⚠️ No user found. Please sign in again.', 'warning');
+      return;
+    }
 
-    const docRef = doc(this.firestore, 'admins', currentUser.uid);
-    await updateDoc(docRef, { photoURL: url });
-    console.log("Firestore updated with new photoURL.");
+    try {
+      await this.presentToast('📤 Uploading your profile photo...', 'medium');
 
-    this.user.photoURL = url;
+      const url = await this.apiService.uploadProfileImage(file, currentUser.uid);
 
-    alert('✅ Profile photo updated successfully!');
-  } catch (error) {
-    console.error('Error uploading photo:', error);
-    alert('❌ Failed to upload photo');
+      const docRef = doc(this.firestore, 'admins', currentUser.uid);
+      await updateDoc(docRef, { photoURL: url });
+
+      this.user.photoURL = url;
+      await this.presentToast('✅ Profile photo updated successfully!', 'success');
+    } catch (error) {
+      await this.presentToast('❌ Failed to upload photo. Try again.', 'danger');
+    }
   }
-}
 
+  async goTologout() {
+    await signOut(this.auth);
+    await this.presentToast('👋 Logged out successfully.', 'primary');
+    this.router.navigate(['/signin']);
+  }
 
-
-  goTologout() {
-   
-      this.router.navigate(['/signin']);
-   
+  // ✅ Reusable Toast Function
+  private async presentToast(message: string, color: string = 'primary') {
+    const toast = await this.toastController.create({
+      message,
+      duration: 2500,
+      position: 'bottom',
+      color,
+      cssClass: 'custom-toast',
+    });
+    await toast.present();
   }
 }
