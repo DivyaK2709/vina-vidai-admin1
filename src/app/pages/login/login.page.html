@@ -1,7 +1,8 @@
-<ion-content class="ion-padding">
-  <div class="signup-container">
+<ion-content class="signup-bg">
+  <div class="signup-wrapper">
     <div class="signup-card">
-      <h2 class="title">Sign Up</h2>
+      <h2 class="title">Create Account</h2>
+      <p class="subtitle">Join now and start learning!</p>
 
       <form (ngSubmit)="onSubmit()">
         <ion-item>
@@ -24,21 +25,16 @@
           <ion-input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" required></ion-input>
         </ion-item>
 
-        <ion-button expand="block" type="submit" class="signup-button">
+        <ion-button expand="block" type="submit" class="signup-btn">
           Sign Up
         </ion-button>
       </form>
 
       <div class="signin-link">
-        <ion-text color="medium">
-          Already have an account?
-        </ion-text>
+        <ion-text color="medium">Already have an account?</ion-text>
         <br />
-        <ion-button fill="clear" color="primary" (click)="goToSignin()">
-          Sign in
-        </ion-button>
+        <ion-button fill="clear" color="primary" (click)="goToSignin()">Sign in</ion-button>
       </div>
     </div>
   </div>
 </ion-content>
-

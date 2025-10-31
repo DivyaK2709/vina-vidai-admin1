@@ -1,70 +1,124 @@
-ion-content {
-  --background: none;
-  background: url('/assets/example.jpg') no-repeat center center fixed;
-  background-size: cover;
-  height: 100vh;
-  width: 100vw;
+/* ☀️ Light Mode Background */
+.signup-bg {
+  --background: #f8fafc;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
+  color: #333;
 }
 
-.signup-container {
+/* 📦 Wrapper */
+.signup-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
   height: 100%;
 }
 
+/* 💎 Glass Card */
 .signup-card {
-  width: 100%;
+  width: 90%;
   max-width: 400px;
-  background: rgba(255, 255, 255, 0.85); // translucent white box
-  backdrop-filter: blur(10px);
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  color: #000; // black text
-}
-
-.title {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 35px 25px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   text-align: center;
-  margin-bottom: 20px;
-  font-size: 24px;
-  font-weight: bold;
-  color: #000;
+  animation: fadeInUp 0.8s ease;
+  border: 1px solid #eee;
 }
 
+/* 🔤 Titles */
+.title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #222;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* 🧾 Inputs */
 ion-item {
-  --background: transparent;
-  --border-color: rgba(0, 0, 0, 0.3);
-  --highlight-color-focused: #000;
-  color: #000;
+  --background: #f0f3f7;
+  --color: #333;
+  --border-radius: 12px;
+  border-radius: 12px;
+  margin: 10px 0;
+  --padding-start: 10px;
 }
 
 ion-label {
-  color: #000;
+  color: #666;
 }
 
 ion-input {
-  color: #000;
+  color: #222;
 }
-
-.signup-button {
-  margin-top: 20px;
-}
-
-.signin-link {
-  text-align: center;
-  margin-top: 10px;
-}
-
 ion-button {
+  --background: linear-gradient(90deg, #a8e063, #56ab2f); /* 🌿 Light green gradient */
+  --background-hover: none; /* remove hover color */
+  --background-activated: none; /* remove press color */
+  --color: #ffffff; /* white text */
   --border-radius: 8px;
+  --box-shadow: none;
+  --ripple-color: transparent; /* remove ripple effect */
+  transition: none; /* disable hover transition */
 }
 
-ion-text {
-  color: #000;
+ion-button:hover {
+  --background: linear-gradient(90deg, #a8e063, #56ab2f); /* keep same color */
+  filter: none; /* prevent hover brightness */
+}
+
+ion-button:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+/* 🖱️ Signup Button */
+.signup-btn {
+  margin-top: 25px;
+  background: linear-gradient(135deg, #a8e063, #56ab2f);
+  border-radius: 14px;
+  color: white;
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 12px;
+
+  transition: all 0.3s ease-in-out;
+}
+
+
+/* 🔗 Signin Link */
+.signin-link {
+  margin-top: 18px;
+  color: #444;
+  font-size: 0.95rem;
+}
+
+.signin-link ion-button {
+  color: #0078ff;
+  font-weight: 600;
+}
+
+/* 🍞 Toast */
+.custom-toast {
+  --background: #0078ff;
+  --color: #fff;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 12px;
+  font-size: 15px;
+  box-shadow: 0 4px 12px rgba(0, 120, 255, 0.3);
+}
+
+/* ✨ Animation */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ToastController } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { Firestore, collection, addDoc } from '@angular/fire/firestore';
 
@@ -27,7 +27,7 @@ export class UploadPage {
     explanationDetails: ''
   };
 
-  constructor(private firestore: Firestore) {}
+  constructor(private firestore: Firestore, private toastController: ToastController) {}
 
   segmentChanged(event: any) {
     this.selectedSegment = event.detail.value;
@@ -37,14 +37,14 @@ export class UploadPage {
     this.file = event.target.files[0];
   }
 
+  // ✅ Upload File Metadata
   async uploadFile() {
     if (!this.file) {
-      alert('Please select a file first.');
+      this.showToast('⚠️ Please select a file first.', 'warning');
       return;
     }
 
     try {
-      // Save file name as metadata in Firestore (not uploading to Storage)
       const questionsRef = collection(this.firestore, 'questions');
       await addDoc(questionsRef, {
         type: this.selectedSegment,
@@ -52,18 +52,18 @@ export class UploadPage {
         createdAt: new Date()
       });
 
-      alert('File metadata saved to Firestore!');
+      this.showToast('✅ File metadata saved to Firestore!', 'success');
       this.file = null;
 
     } catch (error) {
-      console.error('Upload error:', error);
-      alert('Upload failed.');
+      this.showToast('❌ Upload failed. Try again.', 'danger');
     }
   }
 
+  // ✅ Upload Simple Question
   async uploadQuestion() {
     if (!this.questionText.trim()) {
-      alert('Please enter question text.');
+      this.showToast('⚠️ Please enter question text.', 'warning');
       return;
     }
 
@@ -75,24 +75,25 @@ export class UploadPage {
         createdAt: new Date()
       });
 
-      alert('Question saved successfully!');
+      this.showToast('✅ Question saved successfully!', 'success');
       this.questionText = '';
 
     } catch (error) {
-      console.error('Error saving question:', error);
-      alert('Save failed.');
+      this.showToast('❌ Save failed. Please try again.', 'danger');
     }
   }
 
+  // ✅ Upload Quiz
   async uploadQuiz() {
-    // Validate required fields
-    if (!this.quizQuestion.question.trim() ||
-        !this.quizQuestion.option1.trim() ||
-        !this.quizQuestion.option2.trim() ||
-        !this.quizQuestion.option3.trim() ||
-        !this.quizQuestion.option4.trim() ||
-        !this.quizQuestion.answer.trim()) {
-      alert('Please fill all quiz fields.');
+    if (
+      !this.quizQuestion.question.trim() ||
+      !this.quizQuestion.option1.trim() ||
+      !this.quizQuestion.option2.trim() ||
+      !this.quizQuestion.option3.trim() ||
+      !this.quizQuestion.option4.trim() ||
+      !this.quizQuestion.answer.trim()
+    ) {
+      this.showToast('⚠️ Please fill all quiz fields.', 'warning');
       return;
     }
 
@@ -115,7 +116,7 @@ export class UploadPage {
         createdAt: new Date()
       });
 
-      alert('Quiz uploaded successfully!');
+      this.showToast('🎉 Quiz uploaded successfully!', 'success');
 
       // Reset quiz fields
       this.quizQuestion = {
@@ -130,13 +131,19 @@ export class UploadPage {
       };
 
     } catch (error) {
-      console.error('Error uploading quiz:', error);
-      alert('Quiz upload failed.');
+      this.showToast('❌ Quiz upload failed.', 'danger');
     }
   }
 
-
-
-
-
+  // ✅ Reusable Toast Function
+  private async showToast(message: string, color: string = 'primary') {
+    const toast = await this.toastController.create({
+      message,
+      duration: 2500,
+      position: 'bottom',
+      color,
+      cssClass: 'custom-toast'
+    });
+    await toast.present();
+  }
 }

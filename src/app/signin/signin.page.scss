@@ -1,4 +1,48 @@
-.signin-container {
+/* 🌤️ Light Background */
+.signin-bg {
+  --background: #f7f9fc;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 🌍 Language Button */
+.lang-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-weight: 600;
+  color: #444;
+  font-size: 0.95rem;
+  z-index: 10;
+}
+
+.language-menu {
+  position: absolute;
+  top: 50px;
+  right: 15px;
+  width: 160px;
+  background: #fff;
+  color: #222;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  padding: 6px 0;
+}
+
+.language-menu ion-item {
+  --background: transparent;
+  color: #333;
+  font-weight: 500;
+}
+
+/* 🧊 Card Wrapper */
+.signin-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,42 +50,107 @@
 }
 
 .signin-card {
-  width: 100%;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 40px 30px;
+  width: 90%;
   max-width: 400px;
-  background: #1e1e1e;
-  padding: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  animation: fadeInUp 0.6s ease;
+}
+
+.signin-card h2 {
+  font-size: 1.9rem;
+  margin-bottom: 8px;
+  color: #222;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin-bottom: 25px;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+/* 📩 Input Fields */
+ion-item {
+  --background: #f0f3f7;
   border-radius: 12px;
+  margin: 10px 0;
+  color: #333;
+  --highlight-color-focused: #0078ff;
+  --padding-start: 10px;
 }
 
-.title {
-  text-align: center;
-  margin-bottom: 20px;
+ion-input {
+  color: #222;
+}
+
+ion-input::placeholder {
+  color: #999;
+}
+
+/* 🔘 Login Button */
+.login-btn {
+  margin-top: 25px;
+  background: linear-gradient(135deg, #a8e063, #56ab2f);
+  border-radius: 14px;
   color: white;
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 12px;
+
+  transition: all 0.3s ease-in-out;
 }
 
-.signin-button {
+
+/* 🔗 Footer */
+.footer-links {
   margin-top: 20px;
-}
-
-.signup-link {
   text-align: center;
-  margin-top: 20px;
-}
-.language-dropdown-container {
-  position: relative;
+  color: #444;
+  font-size: 0.9rem;
 }
 
-.language-menu {
-  position: fixed; /* ✅ fixed ensures overlay above content */
-  top: 56px; /* Adjust based on your header height */
-  right: 10px; /* Slight padding from edge */
-  width: 160px;
-  background: white;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  z-index: 9999; /* ✅ ensures visible above everything */
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+.footer-links ion-button {
+  color: white;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+ion-button {
+  --background: linear-gradient(90deg, #a8e063, #56ab2f); /* 🌿 Light green gradient */
+  --background-hover: none; /* remove hover color */
+  --background-activated: none; /* remove press color */
+  --color: #ffffff; /* white text */
+  --border-radius: 8px;
+  --box-shadow: none;
+  --ripple-color: transparent; /* remove ripple effect */
+  transition: none; /* disable hover transition */
 }
 
+ion-button:hover {
+  --background: linear-gradient(90deg, #a8e063, #56ab2f); /* keep same color */
+  filter: none; /* prevent hover brightness */
+}
 
+ion-button:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
 
+/* ✨ Animation */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 🍞 Toast */
+.custom-toast {
+  --background: #0078ff;
+  --color: #fff;
+  font-weight: 600;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 15px;
+}

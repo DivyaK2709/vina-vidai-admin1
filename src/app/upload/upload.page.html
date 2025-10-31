@@ -1,12 +1,11 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    
+  <ion-toolbar color="transparent" class="upload-toolbar">
     <ion-title class="ion-text-center">Upload Question</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ion-segment scrollable="true" value="image" (ionChange)="segmentChanged($event)" color="primary">
+<ion-content class="upload-content ion-padding">
+  <ion-segment scrollable="true" value="image" (ionChange)="segmentChanged($event)" class="custom-segment">
     <ion-segment-button value="image">
       <ion-label>Image</ion-label>
     </ion-segment-button>
@@ -21,35 +20,33 @@
   <div [ngSwitch]="selectedSegment">
 
     <!-- Image Segment -->
-    <div *ngSwitchCase="'image'">
+    <div *ngSwitchCase="'image'" class="upload-card">
       <p>Upload Image Question</p>
-      <input type="file" (change)="onFileSelected($event)">
-      <ion-button expand="full" color="primary" (click)="uploadFile()">Upload</ion-button>
+      <input type="file" (change)="onFileSelected($event)" class="file-input" />
+      <ion-button expand="full" class="upload-btn" (click)="uploadFile()">Upload</ion-button>
     </div>
 
     <!-- Image Poll Segment -->
-    <div *ngSwitchCase="'imagepoll'">
+    <div *ngSwitchCase="'imagepoll'" class="upload-card">
       <p>Upload Image Poll Question</p>
-      <input type="file" (change)="onFileSelected($event)">
-      <ion-button expand="full" color="primary" (click)="uploadFile()">Upload</ion-button>
+      <input type="file" (change)="onFileSelected($event)" class="file-input" />
+      <ion-button expand="full" class="upload-btn" (click)="uploadFile()">Upload</ion-button>
     </div>
 
     <!-- Quiz Segment -->
-   <div *ngSwitchCase="'quiz'">
-  <ion-card style="background-color: #e0f7fa;"> <!-- light blue shade -->
-    <ion-card-header class="ion-text-center">
-      <ion-card-title>Create Quiz Question</ion-card-title>
-    </ion-card-header>
-    <ion-card-content class="ion-text-center">
+    <div *ngSwitchCase="'quiz'">
+      <ion-card class="quiz-card">
+        <ion-card-header class="ion-text-center">
+          <ion-card-title>Create Quiz Question</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
 
-   <!-- Enter Question with separate color -->
-<ion-item lines="none" class="question-item">
-  <ion-label position="stacked">Enter Question</ion-label>
-  <ion-input [(ngModel)]="quizQuestion.question"></ion-input>
-</ion-item>
+          <ion-item lines="none" class="question-item">
+            <ion-label position="stacked">Enter Question</ion-label>
+            <ion-input [(ngModel)]="quizQuestion.question"></ion-input>
+          </ion-item>
 
-<!-- Options with different color -->
-<ion-item lines="none" class="option-item">
+          <ion-item lines="none" class="option-item">
   <ion-label position="stacked">Option 1</ion-label>
   <ion-input [(ngModel)]="quizQuestion.option1"></ion-input>
 </ion-item>
@@ -70,38 +67,33 @@
 </ion-item>
 
 
-    <ion-item lines="none">
-  <ion-label position="stacked">Answer</ion-label>
-  <ion-input [(ngModel)]="quizQuestion.answer" class="green-input"></ion-input>
-</ion-item>
-
-
-      <ion-accordion-group>
-        <ion-accordion>
-          <ion-item slot="header" color="light">
-            <ion-label>Explanation</ion-label>
+          <ion-item lines="none" class="answer-item">
+            <ion-label position="stacked">Answer</ion-label>
+            <ion-input [(ngModel)]="quizQuestion.answer"></ion-input>
           </ion-item>
-          <div class="ion-padding" slot="content">
-            <ion-item lines="none">
-              <ion-label position="stacked">Heading</ion-label>
-              <ion-input [(ngModel)]="quizQuestion.explanationHeading"></ion-input>
-            </ion-item>
 
-            <ion-item lines="none">
-              <ion-label position="stacked">Details</ion-label>
-              <ion-textarea [(ngModel)]="quizQuestion.explanationDetails"></ion-textarea>
-            </ion-item>
-          </div>
-        </ion-accordion>
-      </ion-accordion-group>
+          <ion-accordion-group>
+            <ion-accordion>
+              <ion-item slot="header" color="light">
+                <ion-label>Explanation</ion-label>
+              </ion-item>
+              <div class="ion-padding" slot="content">
+                <ion-item lines="none">
+                  <ion-label position="stacked">Heading</ion-label>
+                  <ion-input [(ngModel)]="quizQuestion.explanationHeading"></ion-input>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-label position="stacked">Details</ion-label>
+                  <ion-textarea [(ngModel)]="quizQuestion.explanationDetails"></ion-textarea>
+                </ion-item>
+              </div>
+            </ion-accordion>
+          </ion-accordion-group>
 
-      <ion-button expand="full" color="primary" (click)="uploadQuiz()">Upload Quiz</ion-button>
+          <ion-button expand="full" class="upload-btn" (click)="uploadQuiz()">Upload Quiz</ion-button>
 
-    </ion-card-content>
-  </ion-card>
-</div>
-
+        </ion-card-content>
+      </ion-card>
+    </div>
   </div>
-
- 
 </ion-content>

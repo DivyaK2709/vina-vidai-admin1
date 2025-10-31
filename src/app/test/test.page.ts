@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ToastController } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -20,7 +20,7 @@ export class TestPage implements OnInit, OnDestroy {
   timer: number = 15; // default time per question
   interval: any;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private toastController: ToastController) {}
 
   ngOnInit() {
     this.http.get<any>('assets/testconfig.json').subscribe(data => {
@@ -30,25 +30,26 @@ export class TestPage implements OnInit, OnDestroy {
   }
 
   startTimer() {
-    this.timer = 15; // reset timer for each question
-    this.showAnswer = false; // hide previous answer
-    this.correctAnswer = ''; // reset correct answer
+    this.timer = 15;
+    this.showAnswer = false;
+    this.correctAnswer = '';
+
     this.interval = setInterval(() => {
       this.timer--;
       if (this.timer === 0) {
         clearInterval(this.interval);
         this.showCorrectAnswer();
-        setTimeout(() => this.nextQuestion(), 3000); // wait 3 sec before next
+        setTimeout(() => this.nextQuestion(), 3000);
       }
     }, 1000);
   }
 
   selectOption(option: string) {
-    if (this.showAnswer) return; // prevent re-selection after answer shown
+    if (this.showAnswer) return;
     this.selectedOption = option;
     clearInterval(this.interval);
     this.showCorrectAnswer();
-    setTimeout(() => this.nextQuestion(), 3000); // wait 3 sec before next
+    setTimeout(() => this.nextQuestion(), 3000);
   }
 
   showCorrectAnswer() {
@@ -57,21 +58,33 @@ export class TestPage implements OnInit, OnDestroy {
     this.showAnswer = true;
   }
 
-  nextQuestion() {
+  async nextQuestion() {
     this.showAnswer = false;
     this.selectedOption = '';
     this.correctAnswer = '';
+
     if (this.currentIndex < this.questions.length - 1) {
       this.currentIndex++;
-      this.startTimer(); // start timer for next question
+      this.startTimer();
     } else {
-      console.log('Quiz finished');
-      console.log('Quiz completed!');
-      // Navigate to results page if needed
+      await this.presentToast('🎉 Quiz completed successfully!', 'success');
+      // Here you can navigate to results page if needed
     }
   }
 
   ngOnDestroy() {
     clearInterval(this.interval);
+  }
+
+  // ✅ Reusable Toast Function
+  private async presentToast(message: string, color: string = 'primary') {
+    const toast = await this.toastController.create({
+      message,
+      duration: 2500,
+      position: 'bottom',
+      color,
+      cssClass: 'custom-toast'
+    });
+    await toast.present();
   }
 }

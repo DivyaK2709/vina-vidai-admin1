@@ -1,44 +1,92 @@
-ion-toolbar {
-  --background: #1b7bb8;
-  --color: white;
+/* Background gradient similar to signup page */
+.upload-content {
+  --background: linear-gradient(135deg, #a8e063, #56ab2f);
+  color: #333;
 }
 
-ion-segment {
-  --background: #e0f0fa; /* light variant background if needed */
-  --indicator-color: #1b7bb8;
+/* Toolbar styling */
+.upload-toolbar {
+  --background: transparent;
+  color: white;
+  font-weight: bold;
+}
+
+/* Segment buttons */
+.custom-segment {
+  --background: rgba(255, 255, 255, 0.3);
+  --indicator-color: #ffffff;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  padding: 5px;
 }
 
 ion-segment-button {
-  display: flex;
-  flex-direction: column; /* stack icon above label */
-  justify-content: center;
-  align-items: center;
+  color: #fff;
+  font-weight: 600;
+  text-transform: capitalize;
 }
- ion-icon {
-    font-size: 24px; /* adjust icon size if needed */
-    margin-bottom: 4px;
-  }
 
-  ion-label {
-    font-size: 12px; /* adjust label size if needed */
-  }
-
-.green-input {
-  --color: green;
+/* Reusable upload card */
+.upload-card {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  text-align: center;
+  color: #2e7d32;
 }
+
+.file-input {
+  margin: 10px 0;
+}
+
+/* Buttons with green tone */
+.upload-btn {
+  --background: #43a047;
+  --background-activated: #43a047;
+  --background-focused: #43a047;
+  --color: #fff;
+  --border-radius: 12px;
+  font-weight: 600;
+  text-transform: none;
+  box-shadow: 0 4px 10px rgba(67, 160, 71, 0.4);
+}
+
+/* Question & Option sections */
+.quiz-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
 .question-item {
-  --background: #e3f2fd; // light blue background for question
-  --color: #0d47a1; // dark blue text
+  --background: #f1f8e9;
+  --color: #33691e;
   border-radius: 8px;
   margin-bottom: 10px;
 }
 
 .option-item {
-  --background: #fff3e0; // light orange background for options
-  --color: #e65100; // deep orange text
+  --background: #fffde7;
+  --color: #827717;
   border-radius: 8px;
   margin-bottom: 10px;
 }
 
+.answer-item {
+  --background: #e8f5e9;
+  --color: #2e7d32;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
 
-
+/* Toast theme consistent */
+.custom-toast {
+  --background: #43a047;
+  --color: #fff;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 12px;
+  font-size: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
