@@ -1,43 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <!-- ✅ Fixed: CSP allowing localhost devtools and resources -->
+  <meta charset="utf-8" />
+
+  <title>Vina Vidai Admin</title>
+
+  <!-- ✅ REQUIRED for GitHub Pages (repo name) -->
+  <base href="/vina-vidai-admin1/" />
+
+  <!-- ✅ SAFE CSP for GitHub Pages -->
   <meta http-equiv="Content-Security-Policy"
         content="
-          default-src 'self' data: blob: filesystem: ws: wss: gap: http://localhost:8100 https://localhost:8100;
-          connect-src 'self' ws: wss: http://localhost:8100 https://localhost:8100;
-          img-src 'self' data: content: blob:;
-          script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:;
+          default-src 'self';
+          connect-src 'self' https: wss:;
+          img-src 'self' data: blob:;
+          script-src 'self' 'unsafe-inline' 'unsafe-eval';
           style-src 'self' 'unsafe-inline';
           font-src 'self' data:;
         ">
 
-  <meta http-equiv="Content-Security-Policy" content="default-src * 'self' data: gap: https://localhost http://localhost:8100 'unsafe-eval' 'unsafe-inline'; connect-src *;">
-
-  <title>Ionic App</title>
-
-  <!-- ✅ Fixed: base href must be "/" for Angular router -->
-  <base href="/" />
-
-  <!-- ✅ Meta and viewport setup -->
-  <meta name="color-scheme" content="light dark" />
-  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <!-- ✅ Mobile & Ionic Meta -->
+  <meta name="viewport"
+        content="viewport-fit=cover, width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="format-detection" content="telephone=no" />
   <meta name="msapplication-tap-highlight" content="no" />
+  <meta name="color-scheme" content="light dark" />
 
+  <!-- ✅ Icons -->
   <link rel="icon" type="image/png" href="assets/icon/favicon.png" />
 
-  <!-- ✅ Optional for iOS -->
+  <!-- ✅ PWA / iOS -->
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 </head>
 
 <body>
-  <!-- ✅ Angular root component -->
   <app-root></app-root>
-
-  <!-- ✅ Ionic build output loads these scripts automatically -->
 </body>
-
 </html>
