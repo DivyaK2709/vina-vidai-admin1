@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { Firestore, collection, addDoc } from '@angular/fire/firestore';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-upload',
@@ -15,6 +16,9 @@ export class UploadPage {
   selectedSegment = 'image';
   questionText: string = '';
   file: File | null = null;
+  selectedSubject: string = '';
+
+
 
   quizQuestion = {
     question: '',
@@ -27,16 +31,23 @@ export class UploadPage {
     explanationDetails: ''
   };
 
-  constructor(private firestore: Firestore, private toastController: ToastController) {}
+  constructor(private firestore: Firestore, private toastController: ToastController,private route: ActivatedRoute) {}
 
   segmentChanged(event: any) {
     this.selectedSegment = event.detail.value;
   }
+  ngOnInit() {
+  this.route.queryParams.subscribe(params => {
+    this.selectedSubject = params['subject'] || '';
+    console.log('Selected Subject:', this.selectedSubject);
+  });
+}
+
 
   onFileSelected(event: any) {
     this.file = event.target.files[0];
   }
-
+  
   // ✅ Upload File Metadata
   async uploadFile() {
     if (!this.file) {
@@ -46,11 +57,13 @@ export class UploadPage {
 
     try {
       const questionsRef = collection(this.firestore, 'questions');
-      await addDoc(questionsRef, {
-        type: this.selectedSegment,
-        fileName: this.file.name,
-        createdAt: new Date()
-      });
+    await addDoc(questionsRef, {
+  subject: this.selectedSubject,   // ✅ ADD THIS
+  type: this.selectedSegment,
+  fileName: this.file.name,
+  createdAt: new Date()
+});
+
 
       this.showToast('✅ File metadata saved to Firestore!', 'success');
       this.file = null;
@@ -70,6 +83,7 @@ export class UploadPage {
     try {
       const questionsRef = collection(this.firestore, 'questions');
       await addDoc(questionsRef, {
+        subject: this.selectedSubject,
         type: this.selectedSegment,
         questionText: this.questionText,
         createdAt: new Date()
@@ -101,6 +115,7 @@ export class UploadPage {
       const questionsRef = collection(this.firestore, 'questions');
       await addDoc(questionsRef, {
         type: 'quiz',
+        subject: this.selectedSubject,
         question: this.quizQuestion.question,
         options: [
           this.quizQuestion.option1,
@@ -145,5 +160,8 @@ export class UploadPage {
       cssClass: 'custom-toast'
     });
     await toast.present();
+
+
   }
+  
 }

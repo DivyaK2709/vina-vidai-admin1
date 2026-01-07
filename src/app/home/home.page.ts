@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,7 @@ export class HomePage implements OnInit {
     private router: Router,
     private toastController: ToastController   // ✅ Inject ToastController
   ) {}
-
+  
   ngOnInit() {
     this.http.get<any[]>('assets/subjects.json').subscribe({
       next: (data) => {
@@ -33,7 +34,7 @@ export class HomePage implements OnInit {
       },
     });
   }
-
+   
   async presentToast(message: string, color: string = 'primary') {
     const toast = await this.toastController.create({
       message,
